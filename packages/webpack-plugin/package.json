@@ -1,0 +1,23 @@
+{
+  "name": "@authingmove/webpack-plugin",
+  "version": "0.0.1-alpha.0",
+  "description": "AuthingMove compiler core",
+  "main": "AuthingMoveWebpackPlugin.js",
+  "keywords": [
+    "AuthingMove",
+    "miniprogram"
+  ],
+  "author": "https://github.com/authing",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/authing/AuthingMove"
+  },
+  "bugs": {
+    "url": "https://github.com/authing/AuthingMove/issues"
+  }
+}
