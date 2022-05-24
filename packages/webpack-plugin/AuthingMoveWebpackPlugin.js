@@ -106,7 +106,7 @@ function replaceGlobalWx (compilation, normalModuleFactory) {
         }
       }
       if (needInject) {
-        const dep = new CommonJsVariableDependency(path.resolve(__dirname, '@AuthingMove/core/index.js'), name)
+        const dep = new CommonJsVariableDependency(path.resolve(__dirname, '@authing/authingmove-core/index.js'), name)
         module.addDependency(dep)
       }
     })
