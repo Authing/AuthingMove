@@ -1,5 +1,5 @@
 {
-  "name": "@authingmove/core",
+  "name": "@authing/authingmove-core",
   "version": "0.0.1-alpha.0",
   "description": "AuthingMove runtime core",
   "module": "src/index.js",

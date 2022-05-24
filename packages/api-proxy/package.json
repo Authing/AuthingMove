@@ -1,5 +1,5 @@
 {
-  "name": "@authingmove/api-proxy",
+  "name": "@authing/authingmove-api-proxy",
   "version": "0.0.1-alpha.0",
   "description": "Convert miniprogram API at each end by AuthingMove",
   "module": "src/index.js",
