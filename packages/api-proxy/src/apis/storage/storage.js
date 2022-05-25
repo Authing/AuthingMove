@@ -11,3 +11,8 @@ export function getStorage (options = {}) {
   options.encrypt = false
   return envContext.getStorage(options)
 }
+
+export function removeStorage (options = {}) {
+  options.encrypt = false
+  return envContext.removeStorage(options)
+}
