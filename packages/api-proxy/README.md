@@ -1,1 +1,1 @@
-# api-proxy
+# @authing/authingmove-api-proxy

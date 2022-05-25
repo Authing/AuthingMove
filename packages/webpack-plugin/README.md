@@ -1,1 +1,1 @@
-# webpack-plugin
+# @authing/authingmove-webpack-plugin

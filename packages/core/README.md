@@ -1,1 +1,1 @@
-# core
+# @authing/authingmove-core
