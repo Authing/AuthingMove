@@ -1,7 +1,6 @@
 const ReplaceDependency = require('./dependencies/ReplaceDependency')
 const CommonJsVariableDependency = require('./dependencies/CommonJsVariableDependency')
 const NullFactory = require('webpack/lib/NullFactory')
-const path = require('path')
 const AddModePlugin = require('./resolvers/AddModePlugin')
 
 module.exports = class AuthingMoveWebpackPlugin {

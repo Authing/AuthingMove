@@ -3,6 +3,4 @@ import { initGlobalApi } from './global-api'
 
 initGlobalApi(AuthingMove)
 
-AuthingMove.version = __version__
-
 export default AuthingMove
