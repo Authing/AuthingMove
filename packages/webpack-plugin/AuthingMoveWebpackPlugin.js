@@ -73,8 +73,6 @@ function replaceGlobalWx (compilation, normalModuleFactory) {
 
       if (expression.type === 'Identifier') {
         _expression = expression
-      } else if (expression.type === 'MemberExpression') {
-        _expression = expression.object
       }
 
       if (!_expression) {
