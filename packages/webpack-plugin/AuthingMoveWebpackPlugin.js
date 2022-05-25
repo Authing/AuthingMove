@@ -1,7 +1,6 @@
 const ReplaceDependency = require('./dependencies/ReplaceDependency')
 const CommonJsVariableDependency = require('./dependencies/CommonJsVariableDependency')
 const NullFactory = require('webpack/lib/NullFactory')
-const path = require('path')
 const AddModePlugin = require('./resolvers/AddModePlugin')
 
 module.exports = class AuthingMoveWebpackPlugin {
@@ -106,7 +105,7 @@ function replaceGlobalWx (compilation, normalModuleFactory) {
         }
       }
       if (needInject) {
-        const dep = new CommonJsVariableDependency(path.resolve(__dirname, '@authing/authingmove-core/index.js'), name)
+        const dep = new CommonJsVariableDependency('@authing/authingmove-core', name)
         module.addDependency(dep)
       }
     })
