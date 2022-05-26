@@ -25,7 +25,7 @@ export function error (message) {
 
 export function noop () {}
 
-export function adaptOptions (originalOptions, matchedOptions, extraOptions) {
+export function adaptOptions (originalOptions, matchedOptions = {}, extraOptions = {}) {
   let options = {}
 
   Object.keys(originalOptions).forEach(key => {
