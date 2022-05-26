@@ -1,6 +1,7 @@
 const ReplaceDependency = require('./dependencies/ReplaceDependency')
 const CommonJsVariableDependency = require('./dependencies/CommonJsVariableDependency')
 const NullFactory = require('webpack/lib/NullFactory')
+const Compilation = require('webpack/lib/Compilation')
 const AddModePlugin = require('./resolvers/AddModePlugin')
 
 module.exports = class AuthingMoveWebpackPlugin {
@@ -31,7 +32,7 @@ function tapThisCompilation (compiler) {
 }
 
 function tapEmit (compiler) {
-  compiler.hooks.emit.tap('AuthingMoveWebpackPlugin', compilation => {
+  compiler.hooks.compilation.tap('AuthingMoveWebpackPlugin', compilation => {
     replaceWebpackVariables(compilation)
     injectFrameworkDependency(compilation)
   })
@@ -111,17 +112,29 @@ function replaceGlobalWx (compilation, normalModuleFactory) {
 }
 
 function replaceWebpackVariables (compilation) {
-  Object.keys(compilation.assets).forEach(key => {
-    const content = compilation.assets[key]
-      .source()
-      .replace(/__webpack_require__/g, '__authing_webpack_require__')
-      .replace(/__webpack_exports__/g, '__authing_webpack_exports__')
-
-    compilation.assets[key] = {
-      size: () => content.length,
-      source: () => content
+  compilation.hooks.processAssets.tap(
+    {
+      name: 'AuthingMoveWebpackPlugin',
+      stage: Compilation.PROCESS_ASSETS_STAGE_ADDITIONAL
+    },
+    () => {
+      // eslint-disable-next-line no-unused-vars
+      for (const chunk of compilation.chunks) {
+        // eslint-disable-next-line no-unused-vars
+        for (const file of chunk.files) {
+          compilation.updateAsset(file, old => {
+            const newSource = old.source()
+              .replace(/__webpack_require__/g, '__authing_webpack_require__')
+              .replace(/__webpack_exports__/g, '__authing_webpack_exports__')
+            return {
+              source: () => newSource,
+              size: () => newSource.length
+            }
+          })
+        }
+      }
     }
-  })
+  )
 }
 
 function injectFrameworkDependency (compilation) {
@@ -129,16 +142,29 @@ function injectFrameworkDependency (compilation) {
     Taro: 'import Taro from "@tarojs/taro";'
   }
 
-  Object.keys(compilation.assets).forEach(key => {
-    const content = compilation.assets[key].source()
-    const importStatement = frameworkMap[compilation.__AuthingMove.options.mode]
-
-    if (importStatement) {
-      const newContent = importStatement + '\n\n' + content
-      compilation.assets[key] = {
-        size: () => newContent.length,
-        source: () => newContent
+  compilation.hooks.processAssets.tap(
+    {
+      name: 'AuthingMoveWebpackPlugin',
+      stage: Compilation.PROCESS_ASSETS_STAGE_ADDITIONAL
+    },
+    () => {
+      // eslint-disable-next-line no-unused-vars
+      for (const chunk of compilation.chunks) {
+        // eslint-disable-next-line no-unused-vars
+        for (const file of chunk.files) {
+          compilation.updateAsset(file, old => {
+            const importStatement = frameworkMap[compilation.__AuthingMove.options.mode]
+            if (importStatement) {
+              const newSource = importStatement + '\n\n' + old.source()
+              return {
+                source: () => newSource,
+                size: () => newSource.length
+              }
+            }
+            return old
+          })
+        }
       }
     }
-  })
+  )
 }
