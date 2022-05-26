@@ -16,7 +16,6 @@
 
 <div>AuthingMove is a miniapp API converter, based on wechat miniprogram syntax, be converted into multi platform miniapps & frameworks & quickapp.</div>
 
-<br />
 
 ## Platforms
 
@@ -25,8 +24,6 @@
 |Native miniapp|wx & ali & baidu & qq & tt & jd & ks
 |FrameWork|Taro & uni-app & Mpx
 |Other|quickapp
-
-<br />
 
 ## Ecosystem
 
