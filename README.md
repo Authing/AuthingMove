@@ -21,8 +21,8 @@
 
 |Name|Details
 |-----|----|
-|Native miniapp|wx & ali & baidu & qq & tt & jd & ks
-|FrameWork|Taro & uni-app & Mpx
+|Native miniapp|wx, ali, baidu, qq, tt, jd, ks
+|FrameWork|Taro, uni-app, Mpx
 |Other|quickapp
 
 ## Ecosystem
