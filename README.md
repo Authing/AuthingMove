@@ -1,9 +1,5 @@
 # AuthingMove
 
-<div>AuthingMove is a miniapp API converter, based on wechat miniprogram syntax, be converted into multi platform miniapps & frameworks & quickapp.</div>
-
-<br />
-
 <div>
   <a href="https://forum.authing.cn/" target="_blank">
     <img src="https://img.shields.io/badge/chat-forum-blue" />
@@ -15,6 +11,20 @@
     <img src="https://img.shields.io/badge/node-%3E=12-green.svg" />
   </a>
 </div>
+
+<br />
+
+<div>AuthingMove is a miniapp API converter, based on wechat miniprogram syntax, be converted into multi platform miniapps & frameworks & quickapp.</div>
+
+<br />
+
+## Platforms
+
+|Name|Details
+|-----|----|
+|Native miniapp|wx & ali & baidu & qq & tt & jd & ks
+|FrameWork|Taro & uni-app & Mpx
+|Other|quickapp
 
 <br />
 

@@ -1,6 +1,6 @@
 {
   "name": "authingmove",
-  "description": "Miniapp API converter, based on wechat syntax, be converted into multi terminal miniapp & framework & quickapp",
+  "description": "Miniapp API converter, based on wechat syntax, be converted into multi platform miniapps & frameworks & quickapp",
   "private": true,
   "scripts": {
     "lint": "eslint --ext .js packages/",
