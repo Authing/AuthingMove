@@ -33,8 +33,7 @@ function tapThisCompilation (compiler) {
 
 function tapEmit (compiler) {
   compiler.hooks.compilation.tap('AuthingMoveWebpackPlugin', compilation => {
-    replaceWebpackVariables(compilation)
-    injectFrameworkDependency(compilation)
+    compatibleRuntime(compilation)
   })
 }
 
@@ -111,7 +110,7 @@ function replaceGlobalWx (compilation, normalModuleFactory) {
   })
 }
 
-function replaceWebpackVariables (compilation) {
+function compatibleRuntime (compilation) {
   compilation.hooks.processAssets.tap(
     {
       name: 'AuthingMoveWebpackPlugin',
@@ -122,49 +121,40 @@ function replaceWebpackVariables (compilation) {
       for (const chunk of compilation.chunks) {
         // eslint-disable-next-line no-unused-vars
         for (const file of chunk.files) {
-          compilation.updateAsset(file, old => {
-            const newSource = old.source()
-              .replace(/__webpack_require__/g, '__authing_webpack_require__')
-              .replace(/__webpack_exports__/g, '__authing_webpack_exports__')
-            return {
-              source: () => newSource,
-              size: () => newSource.length
-            }
-          })
+          injectFrameworkDependency(compilation, file)
+          replaceWebpackVariables(compilation, file)
         }
       }
     }
   )
 }
 
-function injectFrameworkDependency (compilation) {
+function replaceWebpackVariables (compilation, file) {
+  compilation.updateAsset(file, old => {
+    const newSource = old.source()
+      .replace(/__webpack_require__/g, '__authing_webpack_require__')
+      .replace(/__webpack_exports__/g, '__authing_webpack_exports__')
+    return {
+      source: () => newSource,
+      size: () => newSource.length
+    }
+  })
+}
+
+function injectFrameworkDependency (compilation, file) {
   const frameworkMap = {
     Taro: 'import Taro from "@tarojs/taro";'
   }
 
-  compilation.hooks.processAssets.tap(
-    {
-      name: 'AuthingMoveWebpackPlugin',
-      stage: Compilation.PROCESS_ASSETS_STAGE_ADDITIONAL
-    },
-    () => {
-      // eslint-disable-next-line no-unused-vars
-      for (const chunk of compilation.chunks) {
-        // eslint-disable-next-line no-unused-vars
-        for (const file of chunk.files) {
-          compilation.updateAsset(file, old => {
-            const importStatement = frameworkMap[compilation.__AuthingMove.options.mode]
-            if (importStatement) {
-              const newSource = importStatement + '\n\n' + old.source()
-              return {
-                source: () => newSource,
-                size: () => newSource.length
-              }
-            }
-            return old
-          })
-        }
+  compilation.updateAsset(file, old => {
+    const importStatement = frameworkMap[compilation.__AuthingMove.options.mode]
+    if (importStatement) {
+      const newSource = importStatement + '\n\n' + old.source()
+      return {
+        source: () => newSource,
+        size: () => newSource.length
       }
     }
-  )
+    return old
+  })
 }
