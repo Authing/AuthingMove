@@ -15,3 +15,7 @@ export function getStorage (options = {}) {
 export function removeStorage (options = {}) {
   return storage.delete(options)
 }
+
+export function clearStorage (options = {}) {
+  return storage.clear(options)
+}
