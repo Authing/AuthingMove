@@ -1,6 +1,6 @@
 # @authing/authingmove-webpack-plugin
 
-A webpack plugin for AuthingMove compile
+A webpack plugin for AuthingMove compiler
 
 ## Usage
 
