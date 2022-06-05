@@ -121,7 +121,7 @@ function processAdditionalRuntimeAssets (compilation) {
       for (const chunk of compilation.chunks) {
         // eslint-disable-next-line no-unused-vars
         for (const file of chunk.files) {
-          injectFrameworkDependency(compilation, file)
+          injectFrameworkDependencies(compilation, file)
           replaceWebpackVariables(compilation, file)
         }
       }
@@ -141,7 +141,7 @@ function replaceWebpackVariables (compilation, file) {
   })
 }
 
-function injectFrameworkDependency (compilation, file) {
+function injectFrameworkDependencies (compilation, file) {
   const frameworkMap = {
     Taro: 'import Taro from "@tarojs/taro";'
   }

@@ -1,6 +1,5 @@
 import { error, getEnvContext, generateFromMap } from './utils'
 import * as transformedApi from './apis'
-import { supportedApis } from './config'
 
 const fromMap = generateFromMap()
 
@@ -13,7 +12,7 @@ export default function transformApi (options) {
   const envContext = getEnvContext()
   const needProxy = Object.create(null)
 
-  supportedApis.concat(Object.keys(transformedApi)).forEach(key => {
+  Object.keys(transformedApi).forEach(key => {
     needProxy[key] = envContext[key] || transformedApi[key]
   })
 
