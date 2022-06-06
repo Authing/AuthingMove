@@ -4,7 +4,7 @@
   <a href="https://forum.authing.cn/" target="_blank">
     <img src="https://img.shields.io/badge/chat-forum-blue" />
   </a>
-  <a href="https://github.com/Authing/AuthingSSO" target="_blank">
+  <a href="https://github.com/Authing/AuthingMove" target="_blank">
     <img src="https://img.shields.io/badge/License-MIT-success" />
   </a>
   <a href="javascript:;" target="_blank">
