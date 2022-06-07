@@ -114,7 +114,7 @@ function processAdditionalRuntimeAssets (compilation) {
   compilation.hooks.processAssets.tap(
     {
       name: 'AuthingMoveWebpackPlugin',
-      stage: Compilation.PROCESS_ASSETS_STAGE_ADDITIONAL
+      stage: Compilation.PROCESS_ASSETS_STAGE_ANALYSE
     },
     () => {
       // eslint-disable-next-line no-unused-vars
