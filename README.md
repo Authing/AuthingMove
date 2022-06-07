@@ -28,9 +28,9 @@
 
 |Name|Details
 |-----|----|
-|Native miniapp|wx, ali, baidu, qq, tt, jd, ks
-|Framework|Taro, uni-app, Mpx
-|Other|quickapp
+|native miniapp|wx, ali, baidu, qq, tt, jd, ks
+|framework|Taro, uni-app, Mpx
+|other|quickapp
 
 ## Ecosystem
 
@@ -39,6 +39,29 @@
 |@authing/authingmove-api-proxy|[![npm version](https://badge.fury.io/js/@authing%2Fauthingmove-api-proxy.svg)](https://www.npmjs.com/package/@authing/authingmove-api-proxy)|Transform runtime APIs based on wechat miniprogram syntax|
 |@authing/authingmove-core|[![npm version](https://badge.fury.io/js/@authing%2Fauthingmove-core.svg)](https://www.npmjs.com/package/@authing/authingmove-core)|Runtime core|
 |@authing/authingmove-webpack-plugin|[![npm version](https://badge.fury.io/js/@authing%2Fauthingmove-webpack-plugin.svg)](https://www.npmjs.com/package/@authing/authingmove-webpack-plugin)|Compiler core|
+
+## Quick start
+
+```shell
+# install CLI
+npm install @authing/authingmove-cli -g
+
+# init project
+authingmove create project-name
+
+# into project
+cd project-name
+
+# development
+npm run dev
+
+# production
+npm run prod
+```
+
+## Example
+
+Please refer to the usage of [authingmove-template](https://github.com/Authing/authingmove-template#usage)
 
 ## Questions
 
@@ -49,9 +72,9 @@ For questions and support please use the [official forum](https://forum.authing.
 - Fork it
 - Create your feature branch (git checkout -b my-new-feature)
 - Commit your changes (git commit -am 'Add some feature')
-- Push to the branch (git push origin my-new-feature)
+- Push to the branch (git push -u origin my-new-feature)
 - Create new Pull Request
 
-## LICENSE
+## License
 
 MIT
