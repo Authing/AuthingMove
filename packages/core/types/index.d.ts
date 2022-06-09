@@ -1,5 +1,5 @@
 export default class AuthingMove {
-  static use (plugin: PluginObj | Function, options?: Record<string, unknown>): void
+  static use (plugin: PluginObj | Install, options?: IObject): void
 
   static request(config: WxRequestConfig): Promise<WxResponseData>
   static setStorage(options: SetStorageOptions): Promise<SetStorageCallbackData>
@@ -9,11 +9,15 @@ export default class AuthingMove {
   static login(options: LoginOptions): Promise<LoginSuccessData>
 }
 
-interface PluginObj {
-  install: (...args: unknown[]) => void
+interface Install {
+  (...args: unknown[]): void
 }
 
-type IObject = Record<string, any>
+interface PluginObj {
+  install: Install
+}
+
+type IObject = Record<string, unknown>
 
 type WxMethod =
   | 'OPTIONS'
