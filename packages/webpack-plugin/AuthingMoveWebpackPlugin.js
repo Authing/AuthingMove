@@ -33,7 +33,7 @@ function tapThisCompilation (compiler) {
 
 function tapEmit (compiler) {
   compiler.hooks.compilation.tap('AuthingMoveWebpackPlugin', compilation => {
-    processAdditionalRuntimeAssets(compilation)
+    analyseAndProcessRuntimeAssets(compilation)
   })
 }
 
@@ -110,7 +110,7 @@ function replaceGlobalWx (compilation, normalModuleFactory) {
   })
 }
 
-function processAdditionalRuntimeAssets (compilation) {
+function analyseAndProcessRuntimeAssets (compilation) {
   compilation.hooks.processAssets.tap(
     {
       name: 'AuthingMoveWebpackPlugin',
