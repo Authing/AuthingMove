@@ -1,6 +1,6 @@
 {
   "name": "@authing/authingmove-webpack-plugin",
-  "version": "0.0.8",
+  "version": "1.0.0-alpha.0",
   "description": "AuthingMove compiler core",
   "main": "AuthingMoveWebpackPlugin.js",
   "keywords": [
