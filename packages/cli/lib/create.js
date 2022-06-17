@@ -5,8 +5,8 @@ module.exports = async function () {
   const args = process.argv.slice(2)
   const parsedArgs = minimist(args)
 
-  const [,targetName] = parsedArgs._
-  
+  const [, targetName] = parsedArgs._
+
   const remoteRepo = 'git@github.com:Authing/authingmove-template.git'
   const currentName = 'authingmove-template'
   shelljs.exec(`
