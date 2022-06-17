@@ -38,6 +38,14 @@ jobs:
           echo "Current publish version: ${{ github.event.inputs.version }}"
           echo "Current user.name: ${{ github.event.inputs.name }}"
           echo "Current user.email: ${{ github.event.inputs.email }}"
+
+      - name: install packages
+        run: |
+          npm ci
+      
+      - name: lint code
+        run: |
+          npm run lint
       
       - name: set git config
         run: |
