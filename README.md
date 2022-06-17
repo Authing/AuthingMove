@@ -39,6 +39,7 @@
 |@authing/authingmove-api-proxy|[![npm version](https://badge.fury.io/js/@authing%2Fauthingmove-api-proxy.svg)](https://www.npmjs.com/package/@authing/authingmove-api-proxy)|Transform runtime APIs based on wechat miniprogram syntax|
 |@authing/authingmove-core|[![npm version](https://badge.fury.io/js/@authing%2Fauthingmove-core.svg)](https://www.npmjs.com/package/@authing/authingmove-core)|Runtime core|
 |@authing/authingmove-webpack-plugin|[![npm version](https://badge.fury.io/js/@authing%2Fauthingmove-webpack-plugin.svg)](https://www.npmjs.com/package/@authing/authingmove-webpack-plugin)|Compiler core|
+|@authing/authingmove-cli|[![npm version](https://badge.fury.io/js/@authing%2Fauthingmove-cli.svg)](https://www.npmjs.com/package/@authing/authingmove-cli)|AuthingMove CLI, create a project quickly|
 
 ## Quick start
 

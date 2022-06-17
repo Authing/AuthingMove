@@ -19,7 +19,7 @@ jobs:
           node-version: 16.13.1
           registry-url: https://registry.npmjs.org/
       
-      - name: install package
+      - name: install packages
         run: |
           npm ci
 
