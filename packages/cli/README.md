@@ -6,7 +6,7 @@
 
 <br />
 
-<div>authingmove-cli help you create a project quickly !</div>
+<div>authingmove-cli help you to get your project up and run quickly !</div>
 
 <br />
 
