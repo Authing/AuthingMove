@@ -84,3 +84,4 @@ MIT
 
 - [authingmove-template](https://github.com/Authing/authingmove-template)
 - [eslint-plugin-authing-nestjs](https://github.com/authing/eslint-plugin-authing-nestjs/)
+- [password-encryption](https://github.com/Authing/password-encryption)
