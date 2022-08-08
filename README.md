@@ -1,16 +1,10 @@
-<div>
+<div align=center>
   <img width="250" src="https://files.authing.co/authing-console/authing-logo-new-20210924.svg" />
 </div>
 
 <br />
 
-English | [简体中文](https://github.com/Authing/AuthingMove/blob/master/README-zh_CN.md)|
-
-<div>AuthingMove is a miniapp API converter, based on wechat miniprogram syntax, be converted into multi platform miniapps & frameworks & quickapp.</div>
-
-<br />
-
-<div>
+<div align=center>
   <a href="https://forum.authing.cn/" target="_blank">
     <img src="https://img.shields.io/badge/chat-forum-blue" />
   </a>
@@ -23,6 +17,10 @@ English | [简体中文](https://github.com/Authing/AuthingMove/blob/master/READ
 </div>
 
 <br />
+
+English | [简体中文](https://github.com/Authing/AuthingMove/blob/master/README-zh_CN.md)
+
+<div>AuthingMove is a miniapp API converter, based on wechat miniprogram syntax, be converted into multi platform miniapps & frameworks & quickapp.</div>
 
 ## Platforms
 
