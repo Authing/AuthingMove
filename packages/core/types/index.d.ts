@@ -3,23 +3,23 @@ export default class AuthingMove {
 
   static request(config: WxRequestConfig): Promise<WxResponseData>
   static setStorage(options: SetStorageOptions): Promise<SetStorageCallbackData>
-  static getStorage(options: GetStorageOptions): Promise<GetStorageSuccessData>
-  static removeStorage(options: RemoveStorageOptions): Promise<RemoveStorageSuccessData>
-  static scanCode(options: ScanCodeOptions): Promise<ScanCodeSuccessData>
-  static login(options: LoginOptions): Promise<LoginSuccessData>
+  static getStorage(options: GetStorageOptions): Promise<GetStorageSuccessData | GetStorageFailData>
+  static removeStorage(options: RemoveStorageOptions): Promise<RemoveStorageSuccessData | RemoveStorageFailData>
+  static scanCode(options: ScanCodeOptions): Promise<ScanCodeSuccessData | ScanCodeFailData>
+  static login(options: LoginOptions): Promise<LoginSuccessData | LoginFailData>
 }
 
-interface Install {
+export interface Install {
   (...args: unknown[]): void
 }
 
-interface PluginObj {
+export interface PluginObj {
   install: Install
 }
 
-type IObject = Record<string, unknown>
+type IObject = Record<string, any>
 
-type WxMethod =
+export type WxMethod =
   | 'OPTIONS'
   | 'GET'
   | 'HEAD'
@@ -29,11 +29,11 @@ type WxMethod =
   | 'TRACE'
   | 'CONNECT'
 
-type WxDataType = 'json' | string
+export type WxDataType = 'json' | string
 
-type WxResponseType = 'text' | 'arraybuffer'
+export type WxResponseType = 'text' | 'arraybuffer'
 
-interface WxResponseDataProfile {
+export interface WxResponseDataProfile {
   redirectStart: number
   redirectEnd: number
   fetchStart: number
@@ -74,19 +74,21 @@ interface WxResponseDataProfile {
   protocol: 'http1.1' | 'h2' | 'quic' | unknown
 }
 
-interface WxResponseData {
-  data: IObject | string | ArrayBuffer
+export interface WxResponseData {
+  data: {
+    data: IObject
+  }
   statusCode: number
   header: IObject
   cookies: string[]
   profile: WxResponseDataProfile
 }
 
-interface WxResponseError {
+export interface WxResponseError {
   errMsg: string
 }
 
-interface WxRequestConfig {
+export interface WxRequestConfig {
   url: string
   data?: IObject
   header?: IObject
@@ -106,29 +108,29 @@ interface WxRequestConfig {
   complete?: (res: WxResponseData | WxResponseError) => void
 }
 
-interface SetStorageCallbackData {
+export interface SetStorageCallbackData {
   errMsg: string
 }
 
-interface SetStorageOptions {
+export interface SetStorageOptions {
   key: string
   data: unknown
   encrypt?: boolean
   success?: (res: SetStorageCallbackData) => void
   fail?: (res: GetStorageFailData) => void
-  complete?: (res: SetStorageCallbackData | GetStorageFailData) => void
+  complete?: (res: SetStorageCallbackData) => void
 }
 
-interface GetStorageSuccessData {
+export interface GetStorageSuccessData {
   errMsg: 'getStorage:ok',
   data: unknown
 }
 
-interface GetStorageFailData {
+export interface GetStorageFailData {
   errMsg: 'getStorage:fail data not found'
 }
 
-interface GetStorageOptions {
+export interface GetStorageOptions {
   key: string
   encrypt?: boolean
   success?: (res: GetStorageSuccessData) => void
@@ -136,22 +138,22 @@ interface GetStorageOptions {
   complete?: (res: GetStorageSuccessData | GetStorageFailData) => void
 }
 
-interface RemoveStorageSuccessData {
+export interface RemoveStorageSuccessData {
   errMsg: "removeStorage:ok"
 }
 
-interface RemoveStorageFailData {
+export interface RemoveStorageFailData {
   errMsg: "removeStorage:fail"
 }
 
-interface RemoveStorageOptions {
+export interface RemoveStorageOptions {
   key: string,
   success?: (res: RemoveStorageSuccessData) => void
   fail?: (res: RemoveStorageFailData) => void
   complete?: (res: RemoveStorageSuccessData | RemoveStorageFailData) => void
 }
 
-interface ScanCodeSuccessData {
+export interface ScanCodeSuccessData {
   result: string
   scanType: string
   charSet: string
@@ -159,11 +161,11 @@ interface ScanCodeSuccessData {
   rawData: string
 }
 
-interface ScanCodeFailData {
+export interface ScanCodeFailData {
   errMsg: 'scanCode:fail'
 }
 
-interface ScanCodeOptions {
+export interface ScanCodeOptions {
   onlyFromCamera?: boolean
   scanType?: Array<'barCode' | 'qrCode'>
   success?: (res: ScanCodeSuccessData) => void
@@ -171,15 +173,15 @@ interface ScanCodeOptions {
   complete?: (res: ScanCodeSuccessData | ScanCodeFailData) => void
 }
 
-interface LoginSuccessData {
+export interface LoginSuccessData {
   code: string
 }
 
-interface LoginFailData {
+export interface LoginFailData {
   errMsg: 'login:fail'
 }
 
-interface LoginOptions {
+export interface LoginOptions {
   timeout?: number
   success?: (res: LoginSuccessData) => void 
   fail?: (res: LoginFailData) => void 
