@@ -7,6 +7,8 @@ export default class AuthingMove {
   static removeStorage(options: RemoveStorageOptions): Promise<RemoveStorageSuccessData | RemoveStorageFailData>
   static scanCode(options: ScanCodeOptions): Promise<ScanCodeSuccessData | ScanCodeFailData>
   static login(options: LoginOptions): Promise<LoginSuccessData | LoginFailData>
+  static chooseImage(options: ChooseImageOptions): Promise<ChooseImageSuccessData | ChooseImageFailData>
+  static uploadFile (options: UploadFileOptions): Promise<UploadFileCallbackData>
 }
 
 export interface Install {
@@ -76,7 +78,7 @@ export interface WxResponseDataProfile {
 
 export interface WxResponseData {
   data: {
-    data: IObject
+    data: any
   }
   statusCode: number
   header: IObject
@@ -123,11 +125,12 @@ export interface SetStorageOptions {
 
 export interface GetStorageSuccessData {
   errMsg: 'getStorage:ok',
-  data: unknown
+  data: any
 }
 
 export interface GetStorageFailData {
-  errMsg: 'getStorage:fail data not found'
+  errMsg: 'getStorage:fail data not found',
+  data: undefined
 }
 
 export interface GetStorageOptions {
@@ -186,4 +189,51 @@ export interface LoginOptions {
   success?: (res: LoginSuccessData) => void 
   fail?: (res: LoginFailData) => void 
   complete?: (res: LoginSuccessData | LoginFailData) => void 
+}
+
+export type MediaSourceTypeItem = 'album' | 'camera'
+
+export type SizeTypeItem = 'original' | 'compressed'
+
+export interface ImageItem {
+  fileType: 'image'
+  size: number
+  tempFilePath: string
+}
+
+export interface ChooseImageSuccessData {
+  errMsg: 'chooseMedia:ok'
+  type: 'image',
+  tempFiles: ImageItem[]
+}
+
+export interface ChooseImageFailData {
+  errMsg: 'chooseMedia:fail'
+}
+
+export interface ChooseImageOptions {
+  count?: number
+  sourceType?: MediaSourceTypeItem[]
+  maxDuration?: number
+  sizeType?: SizeTypeItem[]
+  success?: (res: ChooseImageSuccessData) => void
+  fail?: (res: ChooseImageFailData) => void
+  complete?: (res: ChooseImageSuccessData | ChooseImageFailData) => void
+}
+
+export interface UploadFileOptions {
+  url: string
+  filePath: string
+  name: string
+  header?: IObject
+  formData?: IObject
+  timeout?: number
+  success?: (res: UploadFileSuccessData) => void
+  fail?: (res: UploadFileFailData) => void
+  complete?: (res: UploadFileSuccessData | UploadFileFailData) => void
+}
+
+export interface UploadFileCallbackData {
+  data: string
+  statusCode: number
 }
