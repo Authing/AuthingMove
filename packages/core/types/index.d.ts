@@ -7,7 +7,7 @@ export default class AuthingMove {
   static removeStorage(options: RemoveStorageOptions): Promise<RemoveStorageSuccessData | RemoveStorageFailData>
   static scanCode(options: ScanCodeOptions): Promise<ScanCodeSuccessData | ScanCodeFailData>
   static login(options: LoginOptions): Promise<LoginSuccessData | LoginFailData>
-  static chooseImage(options: ChooseImageOptions): Promise<ChooseImageSuccessData | ChooseImageFailData>
+  static chooseImage(options: ChooseImageOptions): Promise<ChooseImageCallbackData>
   static uploadFile (options: UploadFileOptions): Promise<UploadFileCallbackData>
 }
 
@@ -201,14 +201,10 @@ export interface ImageItem {
   tempFilePath: string
 }
 
-export interface ChooseImageSuccessData {
+export interface ChooseImageCallbackData {
   errMsg: 'chooseMedia:ok'
   type: 'image',
   tempFiles: ImageItem[]
-}
-
-export interface ChooseImageFailData {
-  errMsg: 'chooseMedia:fail'
 }
 
 export interface ChooseImageOptions {
