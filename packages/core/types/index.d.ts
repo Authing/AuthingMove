@@ -224,12 +224,16 @@ export interface UploadFileOptions {
   header?: IObject
   formData?: IObject
   timeout?: number
-  success?: (res: UploadFileSuccessData) => void
-  fail?: (res: UploadFileFailData) => void
-  complete?: (res: UploadFileSuccessData | UploadFileFailData) => void
+  success?: (res: UploadFileCallbackData) => void
+  fail?: (res: UploadFileCallbackData) => void
+  complete?: (res: UploadFileCallbackData) => void
 }
 
 export interface UploadFileCallbackData {
-  data: string
-  statusCode: number
+  code: number
+  message: string
+  data: {
+    key: string
+    url: string
+  }
 }
