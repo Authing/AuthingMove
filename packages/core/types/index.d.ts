@@ -230,10 +230,8 @@ export interface UploadFileOptions {
 }
 
 export interface UploadFileCallbackData {
-  code: number
-  message: string
-  data: {
-    key: string
-    url: string
-  }
+  statusCode: number
+  errMsg: 'uploadFile:ok' | 'uploadFile:fail'
+  data: string
+  header: IObject
 }
