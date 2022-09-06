@@ -10,6 +10,11 @@ export default class AuthingMove {
   static chooseImage(options: ChooseImageOptions): Promise<ChooseImageCallbackData>
   static uploadFile (options: UploadFileOptions): Promise<UploadFileCallbackData>
   static getUserProfile(options: GerUserProfileOptions): Promise<GetUserProfileCallbackData>
+  static checkSession(): Promise<CheckSessionCallbackData>
+}
+
+export interface CheckSessionCallbackData {
+  errMsg: 'checkSession:ok' | 'errMsg: "checkSession:fail'
 }
 
 export type WxMiniprogramLang = 'en' | 'zh_CN' | 'zh_TW'
