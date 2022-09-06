@@ -6,9 +6,39 @@ export default class AuthingMove {
   static getStorage(options: GetStorageOptions): Promise<GetStorageSuccessData | GetStorageFailData>
   static removeStorage(options: RemoveStorageOptions): Promise<RemoveStorageSuccessData | RemoveStorageFailData>
   static scanCode(options: ScanCodeOptions): Promise<ScanCodeSuccessData | ScanCodeFailData>
-  static login(options: LoginOptions): Promise<LoginSuccessData | LoginFailData>
+  static login(options?: LoginOptions): Promise<LoginCallbackData>
   static chooseImage(options: ChooseImageOptions): Promise<ChooseImageCallbackData>
   static uploadFile (options: UploadFileOptions): Promise<UploadFileCallbackData>
+  static getUserProfile(options: GerUserProfileOptions): Promise<GetUserProfileCallbackData>
+}
+
+export type WxMiniprogramLang = 'en' | 'zh_CN' | 'zh_TW'
+
+export interface GerUserProfileOptions {
+  desc: string
+  lang?: WxMiniprogramLang
+  success?: (res: GetUserProfileCallbackData) => void
+  fail?: (res: GetUserProfileCallbackData) => void
+  complete?: (res: GetUserProfileCallbackData) => void
+}
+
+export interface WxMiniprogramUserInfo {
+  nickName: string
+  avatarUrl: string
+  gender: 0 | 1 | 2
+  country: string
+  province: string
+  city: string
+  language: WxMiniprogramLang
+}
+
+export interface GetUserProfileCallbackData {
+  userInfo: WxMiniprogramUserInfo
+  rawData: string
+  signature: string
+  encryptedData: string
+  iv: string
+  cloudID: string
 }
 
 export interface Install {
@@ -176,19 +206,15 @@ export interface ScanCodeOptions {
   complete?: (res: ScanCodeSuccessData | ScanCodeFailData) => void
 }
 
-export interface LoginSuccessData {
+export interface LoginCallbackData {
   code: string
-}
-
-export interface LoginFailData {
-  errMsg: 'login:fail'
 }
 
 export interface LoginOptions {
   timeout?: number
-  success?: (res: LoginSuccessData) => void 
-  fail?: (res: LoginFailData) => void 
-  complete?: (res: LoginSuccessData | LoginFailData) => void 
+  success?: (res: LoginCallbackData) => void 
+  fail?: (res: LoginCallbackData) => void 
+  complete?: (res: LoginCallbackData) => void 
 }
 
 export type MediaSourceTypeItem = 'album' | 'camera'
