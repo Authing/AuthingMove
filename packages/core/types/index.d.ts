@@ -10,9 +10,14 @@ export default class AuthingMove {
   static chooseImage(options: ChooseImageOptions): Promise<ChooseImageCallbackData>
   static uploadFile (options: UploadFileOptions): Promise<UploadFileCallbackData>
   static getUserProfile(options: GerUserProfileOptions): Promise<GetUserProfileCallbackData>
-  static checkSession(): Promise<CheckSessionCallbackData>
+  static checkSession(options?: CheckSessionOptions): Promise<CheckSessionCallbackData>
 }
 
+export interface CheckSessionOptions {
+  success?: (res: CheckSessionCallbackData) => void
+  fail?: (res: CheckSessionCallbackData) => void
+  complete?: (res: CheckSessionCallbackData) => void
+}
 export interface CheckSessionCallbackData {
   errMsg: 'checkSession:ok' | 'errMsg: "checkSession:fail'
 }
