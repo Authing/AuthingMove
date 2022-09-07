@@ -1,4 +1,4 @@
-import { getEnvContext, handleSuccess, adaptOptions } from '../../utils'
+import { getEnvContext, handleSuccess, adaptOptions, transformTempFiles } from '../../utils'
 
 const envContext = getEnvContext()
 
