@@ -50,3 +50,12 @@ export function handleSuccess (originalOptions, wrappedSuccess = noop, context) 
 
   originalOptions.success = res => cachedSuccess.call(_this, wrappedSuccess(res) || res)
 }
+
+export function transformTempFiles (tempFiles) {
+  return tempFiles.map(file => {
+    return {
+      ...file,
+      tempFilePath: file.path
+    }
+  })
+}
