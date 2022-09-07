@@ -1,4 +1,4 @@
-import { getEnvContext, handleSuccess, adaptOptions } from '../../utils'
+import { getEnvContext, handleSuccess, adaptOptions, transformTempFiles } from '../../utils'
 
 const envContext = getEnvContext()
 
@@ -6,8 +6,8 @@ export async function uploadFile (options = {}) {
   const _options = adaptOptions(options)
 
   handleSuccess(_options, res => {
-    return adaptOptions(res, {
-      tempFilePaths: 'tempFiles'
+    return adaptOptions(res, {}, {
+      tempFiles: transformTempFiles(res.tempFiles)
     })
   })
 
