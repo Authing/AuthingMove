@@ -118,6 +118,8 @@ export interface WxResponseDataProfile {
 
 export interface WxResponseData {
   data: {
+    statusCode: number
+    message: string
     data: any
   }
   statusCode: number
