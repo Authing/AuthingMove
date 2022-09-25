@@ -3,7 +3,7 @@ export default class AuthingMove {
 
   static request(config: WxRequestConfig): Promise<WxResponseData>
   static setStorage(options: SetStorageOptions): Promise<SetStorageCallbackData>
-  static getStorage(options: GetStorageOptions): Promise<GetStorageSuccessData | GetStorageFailData>
+  static getStorage(options: GetStorageOptions): Promise<GetStorageCallbackData>
   static removeStorage(options: RemoveStorageOptions): Promise<RemoveStorageSuccessData | RemoveStorageFailData>
   static scanCode(options: ScanCodeOptions): Promise<ScanCodeSuccessData | ScanCodeFailData>
   static login(options?: LoginOptions): Promise<LoginCallbackData>
@@ -118,6 +118,8 @@ export interface WxResponseDataProfile {
 
 export interface WxResponseData {
   data: {
+    statusCode: number
+    message: string
     data: any
   }
   statusCode: number
@@ -159,26 +161,21 @@ export interface SetStorageOptions {
   data: unknown
   encrypt?: boolean
   success?: (res: SetStorageCallbackData) => void
-  fail?: (res: GetStorageFailData) => void
+  fail?: (res: SetStorageCallbackData) => void
   complete?: (res: SetStorageCallbackData) => void
 }
 
-export interface GetStorageSuccessData {
-  errMsg: 'getStorage:ok',
-  data: any
-}
-
-export interface GetStorageFailData {
-  errMsg: 'getStorage:fail data not found',
-  data: undefined
+export interface GetStorageCallbackData {
+  errMsg: 'getStorage:ok' | 'getStorage:fail data not found',
+  data?: any
 }
 
 export interface GetStorageOptions {
   key: string
   encrypt?: boolean
-  success?: (res: GetStorageSuccessData) => void
-  fail?: (res: GetStorageFailData) => void
-  complete?: (res: GetStorageSuccessData | GetStorageFailData) => void
+  success?: (res: GetStorageCallbackData) => void
+  fail?: (res: GetStorageCallbackData) => void
+  complete?: (res: GetStorageCallbackData) => void
 }
 
 export interface RemoveStorageSuccessData {
