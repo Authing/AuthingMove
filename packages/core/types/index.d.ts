@@ -6,7 +6,7 @@ export default class AuthingMove {
   static getStorage(options: GetStorageOptions): Promise<GetStorageCallbackData>
   static removeStorage(options: RemoveStorageOptions): Promise<RemoveStorageSuccessData | RemoveStorageFailData>
   static scanCode(options: ScanCodeOptions): Promise<ScanCodeSuccessData | ScanCodeFailData>
-  static login(options?: LoginOptions): Promise<LoginCallbackData>
+  static login(options?: WxLoginOptions): Promise<LoginCallbackData>
   static chooseImage(options: ChooseImageOptions): Promise<ChooseImageCallbackData>
   static uploadFile (options: UploadFileOptions): Promise<UploadFileCallbackData>
   static getUserProfile(options: GerUserProfileOptions): Promise<GetUserProfileCallbackData>
@@ -217,7 +217,7 @@ export interface LoginCallbackData {
   code: string
 }
 
-export interface LoginOptions {
+export interface WxLoginOptions {
   timeout?: number
   success?: (res: LoginCallbackData) => void 
   fail?: (res: LoginCallbackData) => void 
